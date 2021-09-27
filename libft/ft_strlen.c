@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/25 16:24:03 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/27 16:50:52 by emgarcia         ###   ########.fr       */
+/*   Created: 2021/08/01 14:55:38 by emgarcia          #+#    #+#             */
+/*   Updated: 2021/08/01 14:55:42 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
 
-#endif
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}

@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/25 16:24:03 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/27 16:50:52 by emgarcia         ###   ########.fr       */
+/*   Created: 2021/07/29 15:28:03 by emgarcia          #+#    #+#             */
+/*   Updated: 2021/08/08 21:17:15 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
+char	*ft_strrchr(const char *s, int c)
+{
+	char	*aux;
 
-#endif
+	if (c > 256)
+		c %= 256;
+	aux = NULL;
+	while (*s != '\0')
+	{
+		if (*s == c)
+			aux = (char *)s;
+		s++;
+	}
+	if (*s == c)
+		aux = (char *)s;
+	return (aux);
+}

@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/25 16:24:03 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/27 16:50:52 by emgarcia         ###   ########.fr       */
+/*   Created: 2021/08/06 19:55:58 by emgarcia          #+#    #+#             */
+/*   Updated: 2021/08/07 19:05:37 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-
-#endif
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	new->next = *lst;
+	*lst = new;
+}
