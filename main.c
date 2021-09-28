@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 18:20:20 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/28 19:07:28 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/09/28 22:05:43 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,56 +46,6 @@ char	**ft_parsepaths(char **envp)
 	return (spaths);
 }
 
-void	ft_parent(int fd2, char **mycmd2, char **envp, int *end)
-{
-	char	*cmd;
-	size_t	i;
-	char	**paths;
-	int		status;
-
-	waitpid(-1, &status, 0);
-	dup2(fd2, STDOUT_FILENO);
-	dup2(end[0], STDIN_FILENO);
-	close(end[1]);
-	close(fd2);
-	paths = ft_parsepaths(envp);
-	i = -1;
-	while (paths[++i])
-	{
-		cmd = ft_strjoin(paths[i], mycmd2[0]);
-		if (cmd)
-		{
-			execve(cmd, mycmd2, envp);
-			free(cmd);
-		}
-	}
-	exit(EXIT_FAILURE);
-}
-
-void	ft_child(int fd1, char **mycmd1, char **envp, int *end)
-{
-	char	*cmd;
-	size_t	i;
-	char	**paths;
-
-	dup2(fd1, STDIN_FILENO);
-	dup2(end[1], STDOUT_FILENO);
-	close(end[0]);
-	close(fd1);
-	paths = ft_parsepaths(envp);
-	i = -1;
-	while (paths[++i])
-	{
-		cmd = ft_strjoin(paths[i], mycmd1[0]);
-		if (cmd)
-		{
-			execve(cmd, mycmd1, envp);
-			free(cmd);
-		}
-	}
-	exit(EXIT_FAILURE);
-}
-
 void	ft_pipex(int fd1, int fd2, char **argv, char **envp)
 {
 	int		end[2];
@@ -115,11 +65,17 @@ void	ft_pipex(int fd1, int fd2, char **argv, char **envp)
 		ft_parent(fd2, mycmd2, envp, end);
 }
 
+void	leak(void)
+{
+	system("leaks pipex");
+}
+
 int	main(int argc, char *argv[], char **envp)
 {
 	int	fd1;
 	int	fd2;
 
+	atexit(leak);
 	if (argc == 2)
 		printf("%s\n", argv[1]);
 	fd1 = open(argv[1], O_RDONLY);
