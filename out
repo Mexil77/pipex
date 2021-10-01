@@ -1,10 +1,8 @@
--rw-r--r--  1 emgarcia  2019   1216 28 sep 20:17 Makefile
--rw-r--r--  1 emgarcia  2019   1712 28 sep 20:16 ft_process.c
--rw-r--r--  1 emgarcia  2019   1524 28 sep 20:18 ft_process.o
-drwxr-xr-x  2 emgarcia  2019   4096 28 sep 20:18 libft
--rw-r--r--  1 emgarcia  2019   2132 28 sep 22:05 main.c
--rw-r--r--  1 emgarcia  2019   2592 28 sep 22:05 main.o
--rw-r--r--  1 emgarcia  2019      0 28 sep 22:06 out
--rwxr-xr-x  1 emgarcia  2019  13996 28 sep 22:05 pipex
--rw-r--r--  1 emgarcia  2019   1227 28 sep 20:18 pipex.h
--rw-r--r--  1 emgarcia  2019     33 28 sep 19:51 prueba
+total 24
+-rw-r--r--  1 emgarcia  2019  1216 Sep 28 20:17 Makefile
+-rw-r--r--  1 emgarcia  2019  1932 Oct  1 20:50 ft_process.c
+drwxr-xr-x  2 emgarcia  2019  4096 Oct  1 21:10 libft
+-rw-r--r--  1 emgarcia  2019  2273 Sep 29 18:51 main.c
+-rw-r--r--  1 emgarcia  2019     0 Oct  1 21:10 out
+-rw-r--r--  1 emgarcia  2019  1227 Sep 28 20:18 pipex.h
+-rw-r--r--  1 emgarcia  2019    33 Sep 28 19:51 prueba
