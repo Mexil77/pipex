@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 18:20:20 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/10/02 20:49:49 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/10/02 22:31:27 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ char	**ft_parsepaths(char **envp)
 	char	*aux;
 
 	paths = ft_substr(ft_findpath(envp), 5, ft_strlen(ft_findpath(envp)));
-	if (!paths)
-		paths = ft_defaultpath();
 	spaths = ft_split(paths, ':');
 	free(paths);
 	i = -1;
@@ -66,7 +64,14 @@ void	ft_pipex(int fd1, int fd2, char **argv, char **envp)
 	pid_t	pid;
 	char	**mycmd1;
 	char	**mycmd2;
+	char	*paths;
 
+	paths = ft_substr(ft_findpath(envp), 5, ft_strlen(ft_findpath(envp)));
+	if (!paths)
+	{
+		ft_putstr_fd("PATH not found.\n", 1);
+		exit (EXIT_FAILURE);
+	}
 	mycmd1 = ft_split(argv[2], ' ');
 	mycmd2 = ft_split(argv[3], ' ');
 	pipe(end);
@@ -81,8 +86,8 @@ void	ft_pipex(int fd1, int fd2, char **argv, char **envp)
 
 int	main(int argc, char *argv[], char **envp)
 {
-	int	fd1;
-	int	fd2;
+	int		fd1;
+	int		fd2;
 
 	if (argc != 5)
 		return (0);
