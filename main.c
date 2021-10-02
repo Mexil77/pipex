@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 18:20:20 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/09/29 18:51:15 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/10/02 20:49:49 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ char	**ft_parsepaths(char **envp)
 	char	**spaths;
 	char	*aux;
 
-	paths = ft_substr(ft_findpath(envp), 5, 61);
+	paths = ft_substr(ft_findpath(envp), 5, ft_strlen(ft_findpath(envp)));
+	if (!paths)
+		paths = ft_defaultpath();
 	spaths = ft_split(paths, ':');
 	free(paths);
 	i = -1;
@@ -82,14 +84,22 @@ int	main(int argc, char *argv[], char **envp)
 	int	fd1;
 	int	fd2;
 
-	if (argc == 2)
-		printf("%s\n", argv[1]);
+	if (argc != 5)
+		return (0);
 	fd1 = open(argv[1], O_RDONLY);
-	if (fd1 < -1)
+	if (fd1 == -1)
+	{
+		ft_putstr_fd(ft_strjoin("zsh: permission denied: ", argv[1]), 1);
+		ft_putstr_fd("\n", 1);
 		return (0);
+	}
 	fd2 = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (fd2 < -1)
+	if (fd2 == -1)
+	{
+		ft_putstr_fd(ft_strjoin("zsh: permission denied: ", argv[4]), 1);
+		ft_putstr_fd("\n", 1);
 		return (0);
+	}
 	ft_pipex(fd1, fd2, argv, envp);
 	return (0);
 }

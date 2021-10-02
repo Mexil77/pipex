@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 20:16:01 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/10/01 20:50:56 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/10/02 18:37:33 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	ft_parent(int fd2, char **mycmd2, char **envp, int *end)
 	}
 	close(fd2);
 	ft_putstr_fd(ft_strjoin("zsh: command not found: ", mycmd2[0]), 1);
+	ft_putstr_fd("\n", 1);
 	exit (EXIT_FAILURE);
 }
 
@@ -63,5 +64,6 @@ void	ft_child(int fd1, char **mycmd1, char **envp, int *end)
 	}
 	close(end[1]);
 	ft_putstr_fd(ft_strjoin("zsh: command not found: ", mycmd1[0]), 1);
+	ft_putstr_fd("\n", 1);
 	exit (EXIT_FAILURE);
 }

@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_pipex_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/25 16:24:03 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/10/02 20:13:00 by emgarcia         ###   ########.fr       */
+/*   Created: 2021/10/02 20:04:59 by emgarcia          #+#    #+#             */
+/*   Updated: 2021/10/02 20:12:49 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "pipex.h"
 
-# include "libft/libft.h"
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
+char	*ft_defaultpath(void)
+{
+	char	*aux;
+	char	*line;
 
-void	ft_parent(int fd2, char **mycmd2, char **envp, int *end);
-void	ft_child(int fd1, char **mycmd1, char **envp, int *end);
-char	**ft_parsepaths(char **envp);
-char	*ft_defaultpath(void);
-
-#endif
+	line = ft_strjoin("/usr/local/bin:/usr/bin:", "/bin:/usr/sbin:/sbin:");
+	aux = line;
+	line = ft_strjoin(line, "/usr/local/munki:/Library/Frameworks/Mono.");
+	free(aux);
+	aux = line;
+	line = ft_strjoin(line, "framework/Versions/Current/Commands");
+	free(aux);
+	return (line);
+}
